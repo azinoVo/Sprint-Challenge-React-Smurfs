@@ -10,7 +10,6 @@ const Smurf = props => {
       <Link to={`/smurfs/${props.id}`}>
         <button>Learn More</button>
       </Link>
-      <button>Exile</button>
     </div>
   );
 };

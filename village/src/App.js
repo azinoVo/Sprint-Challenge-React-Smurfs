@@ -43,24 +43,35 @@ class App extends Component {
       })
   }
 
-  render() {
-    return (
-      <div className="App">
-        <nav className='navbar'>
-          <NavLink exact to='/'><span>Home</span></NavLink>
-          <NavLink to='/smurfForm' activeClassName='form-active'><span>Add Smurf</span></NavLink>
-          <NavLink exact to='/smurfs'><span>Smurf Population</span></NavLink>
-        </nav>
-        <Route exact path="/" component={Home} />
-        <Route exact path='/smurfs' render={props => (<Smurfs {...props} smurfs={this.state.smurfs} />)} />
-        <Route path='/smurfs/:id' render={props => (<SmurfProfile {...props} smurfs={this.state.smurfs} />)} />
-        <Route path='/smurfForm' render={props => (<SmurfForm {...props} makeSmurf={this.makeSmurf} />)} />
-
-        {/* <SmurfForm makeSmurf={this.makeSmurf}/> */}
-        {/* <Smurfs smurfs={this.state.smurfs} /> */}
-      </div>
-    );
+  exileSmurf = id => {
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+      .then(response => {
+        this.setState({ smurfs: response.data });
+        console.log(`Post Request: ${response.data}`)
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
+
+render() {
+  return (
+    <div className="App">
+      <nav className='navbar'>
+        <NavLink exact to='/'><span>Home</span></NavLink>
+        <NavLink to='/smurfForm' activeClassName='form-active'><span>Add Smurf</span></NavLink>
+        <NavLink exact to='/smurfs'><span>Smurf Population</span></NavLink>
+      </nav>
+      <Route exact path="/" component={Home} />
+      <Route exact path='/smurfs' render={props => (<Smurfs {...props} smurfs={this.state.smurfs} />)} />
+      <Route path='/smurfs/:id' render={props => (<SmurfProfile {...props} smurfs={this.state.smurfs} exileSmurf={this.exileSmurf} />)} />
+      <Route path='/smurfForm' render={props => (<SmurfForm {...props} makeSmurf={this.makeSmurf} />)} />
+
+      {/* <SmurfForm makeSmurf={this.makeSmurf}/> */}
+      {/* <Smurfs smurfs={this.state.smurfs} /> */}
+    </div>
+  );
+}
 }
 
 export default App;

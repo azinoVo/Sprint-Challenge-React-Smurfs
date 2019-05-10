@@ -10,6 +10,11 @@ class SmurfProfile extends Component {
         }
     }
 
+exile = event => {
+    event.preventDefault();
+    this.props.exileSmurf(this.props.match.params.id);
+    this.props.history.push("/smurfs")
+}
 
     render() {
 
@@ -22,7 +27,8 @@ class SmurfProfile extends Component {
                         <h3>{smurf.name}</h3>
                         <p>Height: {smurf.height} tall</p>
                         <p>Age: {smurf.age} smurf years old</p>
-                        <Link to='/smurfs'><span>Back</span></Link>
+                        <Link to='/smurfs'><button>Back</button></Link>
+                        <button onClick={this.exile}>Exile</button>
                     </div>
                 })}
             </div>
