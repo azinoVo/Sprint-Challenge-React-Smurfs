@@ -6,6 +6,7 @@ import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 import SmurfProfile from './components/SmurfProfile';
 import Home from './components/Home';
+import SmurfUpdate from './components/SmurfUpdate';
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,17 @@ class App extends Component {
       })
   }
 
+  modifySmurf = (id, obj) => {
+    axios.put(`http://localhost:3333/smurfs/${id}`, obj)
+      .then(response => {
+        this.setState({ smurfs: response.data });
+        console.log(`Post Request: ${response.data}`)
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
 render() {
   return (
     <div className="App">
@@ -66,6 +78,8 @@ render() {
       <Route exact path='/smurfs' render={props => (<Smurfs {...props} smurfs={this.state.smurfs} />)} />
       <Route path='/smurfs/:id' render={props => (<SmurfProfile {...props} smurfs={this.state.smurfs} exileSmurf={this.exileSmurf} />)} />
       <Route path='/smurfForm' render={props => (<SmurfForm {...props} makeSmurf={this.makeSmurf} />)} />
+      <Route path='/smurfUpdate' render={props => (<SmurfUpdate {...props} modifySmurf={this.modifySmurf}  />)} />
+
 
       {/* <SmurfForm makeSmurf={this.makeSmurf}/> */}
       {/* <Smurfs smurfs={this.state.smurfs} /> */}
