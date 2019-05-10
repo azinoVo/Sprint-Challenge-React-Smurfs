@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class SmurfProfile extends Component {
     constructor(props) {
@@ -10,19 +12,17 @@ class SmurfProfile extends Component {
 
 
     render() {
-        const id = this.props.match.params.id
-        const smurfInfo = this.props.smurfs.filter(smurf => `${smurf.id}` === id)
-        console.log(smurfInfo);
 
         return (
 
             <div>
-                <h1>TESTING</h1>
-                {smurfInfo.map(smurf =>  {
-                    <div className='smurf-info'>
-                        <h2>{smurf.name}</h2>
-                        <p>{smurf.age}</p>
-                        <p>{smurf.height}</p>
+                {this.props.smurfs.filter(smurf => `${smurf.id}` === this.props.match.params.id).map(smurf => {
+                    console.log(smurf.name);
+                    return <div>
+                        <h3>{smurf.name}</h3>
+                        <p>Height: {smurf.height} tall</p>
+                        <p>Age: {smurf.age} smurf years old</p>
+                        <Link to='/smurfs'><span>Back</span></Link>
                     </div>
                 })}
             </div>
