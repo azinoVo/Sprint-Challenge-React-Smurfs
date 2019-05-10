@@ -1,0 +1,25 @@
+.home-wrapper {
+    display:flex;
+    flex-direction:column;
+}
+
+.navbar {
+    height:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.navbar a {
+    margin:5px 10%;
+    text-decoration:none;
+}
+
+.active {
+    background-color:lightblue;
+}
+
+.form-active {
+    background-color:lightblue;
+}

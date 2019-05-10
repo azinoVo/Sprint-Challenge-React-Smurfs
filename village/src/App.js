@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Route} from 'react-router-dom';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
+import Home from './components/Home';
 
 class App extends Component {
   constructor(props) {
@@ -43,8 +45,12 @@ makeSmurf = smurf => {
   render() {
     return (
       <div className="App">
-        <SmurfForm makeSmurf={this.makeSmurf}/>
-        <Smurfs smurfs={this.state.smurfs} />
+        <Route path="/" component={Home} />
+        <Route path='/smurfs' render={props => (<Smurfs {...props} smurfs={this.state.smurfs} />)} />
+        <Route path='/smurfForm' render={props => (<SmurfForm {...props} makeSmurf={this.state.smurfs} />)} />
+
+        {/* <SmurfForm makeSmurf={this.makeSmurf}/> */}
+        {/* <Smurfs smurfs={this.state.smurfs} /> */}
       </div>
     );
   }

@@ -28,6 +28,8 @@ class SmurfForm extends Component {
 
   render() {
     return (
+      <React.Fragment>
+        <h1>Build-A-Smurf Workshop</h1>
       <div className="SmurfForm">
         <form onSubmit={this.addSmurf}>
           <input
@@ -45,14 +47,14 @@ class SmurfForm extends Component {
           />
           <input
             onChange={this.handleInputChange}
-            placeholder="...height in cm"
+            placeholder="...height"
             value={this.state.height}
             name="height"
-            type="number"
           />
           <button type="submit">Add to the village</button>
         </form>
       </div>
+      </React.Fragment>
     );
   }
 }
