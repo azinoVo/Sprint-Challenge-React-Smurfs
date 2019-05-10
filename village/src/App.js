@@ -20,7 +20,7 @@ componentDidMount() {
   .then( response => {
     console.log(response);
     this.setState({smurfs: response.data});
-    console.log(response.data)
+    console.log(`Put Request: ${response.data}`)
 
   })
   .catch( error => {
@@ -28,10 +28,22 @@ componentDidMount() {
   })
 }
 
+makeSmurf = smurf => {
+  axios.post('http://localhost:3333/smurfs', smurf)
+  .then(response => {
+    console.log(response);
+    this.setState({smurfs: response.data});
+    console.log(`Post Request: ${response.data}`)
+  })
+  .catch(error => {
+    console.log(error);
+  })
+}
+
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm makeSmurf={this.makeSmurf}/>
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
