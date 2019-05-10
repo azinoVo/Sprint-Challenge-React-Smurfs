@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import workshop from './workshop.jpeg'
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -30,7 +31,8 @@ class SmurfForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Build-A-Smurf Workshop</h1>
+        <h1>Build-A-Smurf</h1>
+        <img width='50%' height='400px' src={workshop} alt="workshop pic"/>
       <div className="SmurfForm">
         <form onSubmit={this.addSmurf}>
           <input
