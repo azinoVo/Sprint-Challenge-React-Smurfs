@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import workshop from './workshop.jpeg'
 
-class SmurfForm extends Component {
+class SmurfUpdate extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,30 +10,23 @@ class SmurfForm extends Component {
     };
   }
 
-  addSmurf = event => {
-    event.preventDefault();
-    // add code to create the smurf using the api
-    this.props.makeSmurf(this.state);
-    this.props.history.push('/smurfs');
-
-    this.setState({
-      name: '',
-      age: '',
-      height: ''
-    });
-  }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  update = event => {
+      event.preventDefault();
+      this.props.modifySmurf(this.props.location.state,this.state);
+      this.props.history.push("/smurfs")
+  }
+
   render() {
     return (
       <React.Fragment>
-        <h1>Build-A-Smurf</h1>
-        <img width='50%' height='400px' src={workshop} alt="workshop pic"/>
+        <h1>Modify-A-Smurf</h1>
       <div className="SmurfForm">
-        <form onSubmit={this.addSmurf}>
+        <form onSubmit={this.update}>
           <input
             onChange={this.handleInputChange}
             placeholder="...name"
@@ -57,7 +49,7 @@ class SmurfForm extends Component {
             type='text'
 
           />
-          <button type="submit">Add to the village</button>
+          <button type="submit">Update Info</button>
         </form>
       </div>
       </React.Fragment>
@@ -65,4 +57,4 @@ class SmurfForm extends Component {
   }
 }
 
-export default SmurfForm;
+export default SmurfUpdate;

@@ -6,13 +6,13 @@ class Smurfs extends Component {
   render() {
     return (
       <div className="Smurfs">
-        <h1>Smurf Village</h1>
+        <h2>{`Smurf Population: ${this.props.smurfs.length}`}</h2>
         <ul>
           {this.props.smurfs.map(smurf => {
             return (
               <Smurf
-                name={smurf.name}
                 id={smurf.id}
+                name={smurf.name}
                 age={smurf.age}
                 height={smurf.height}
                 key={smurf.id}
