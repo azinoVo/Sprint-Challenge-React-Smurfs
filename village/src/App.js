@@ -55,7 +55,7 @@ class App extends Component {
       })
   }
 
-  modifySmurf = (id, obj) => {
+  modifySmurf = (id,obj) => {
     axios.put(`http://localhost:3333/smurfs/${id}`, obj)
       .then(response => {
         this.setState({ smurfs: response.data });

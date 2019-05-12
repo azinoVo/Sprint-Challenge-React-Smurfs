@@ -17,11 +17,13 @@ class SmurfUpdate extends Component {
 
   update = event => {
       event.preventDefault();
-      this.props.modifySmurf(this.props.location.state,this.state);
-      this.props.history.push("/smurfs")
+      this.props.modifySmurf(this.props.location.state.id, this.state);
+      this.props.history.push(`/smurfs/${this.props.location.state.id}`)
   }
 
   render() {
+    console.log(this.props.location.state.id);
+
     return (
       <React.Fragment>
         <h1>Modify-A-Smurf</h1>

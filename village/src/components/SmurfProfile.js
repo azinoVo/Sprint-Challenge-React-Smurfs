@@ -22,8 +22,8 @@ class SmurfProfile extends Component {
 
             <div>
                 {this.props.smurfs.filter(smurf => `${smurf.id}` === this.props.match.params.id).map(smurf => {
-                    return <div>
-                        <h3>{smurf.name}</h3>
+                    return <div key={smurf.name}>
+                        <h3 >{smurf.name}</h3>
                         <p>Height: {smurf.height} tall</p>
                         <p>Age: {smurf.age} smurf years old</p>
                         <Link to='/smurfs'><button>Back</button></Link>
